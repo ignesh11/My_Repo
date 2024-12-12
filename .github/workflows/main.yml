@@ -6,7 +6,7 @@ on:
     branches:
       - main
   repository_dispatch: # Add this line to listen for repository dispatch events
-    types: [trigger-workflow] # You can specify a custom type
+    types: [trigger-event] # You can specify a custom type
 
 jobs:
   build:
