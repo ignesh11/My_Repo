@@ -18,12 +18,4 @@ jobs:
 
       - name: Run a script
         run: echo "Hello, world!"
-        
-      - name: Compile Java code
-        run: |
-          mkdir -p out
-          javac -d out src/com/hello/Addition.java
-
-      - name: Run Java main class
-        run: |
-          java -cp out com.hello.Addition
+     
