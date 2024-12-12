@@ -20,7 +20,10 @@ jobs:
         run: echo "Hello, world!"
         
       - name: Compile Java code
-        run: javac -d out $(find src -name "*.java")
- 
+        run: |
+          mkdir -p out
+          javac -d out src/com/hello/Addition.java
+
       - name: Run Java main class
-        run: java -cp out com.hello.Addition 
+        run: |
+          java -cp out com.hello.Addition
