@@ -14,3 +14,9 @@ jobs:
 
       - name: Run a script
         run: echo "Hello from the dispatch event!"
+     
+      - name: Compile Java code
+        run: javac -d out $(find src -name "*.java")
+ 
+      - name: Run Java main class
+        run: java -cp out com.hello.Addition 
