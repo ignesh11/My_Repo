@@ -1,43 +1,22 @@
+
+          
 name: Main Workflow
 
 on:
   push:
     branches:
       - main
-  repository_dispatch:
-    types: [trigger-event]  # This should match the event_type you send in the payload
+  repository_dispatch: # Add this line to listen for repository dispatch events
+    types: [trigger-event] # You can specify a custom type
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Run Tests
-        run: |
-          echo "Running tests for ID: ${{ github.event.client_payload.test_id }}"
-          # Replace the following command with your actual test command
-          npm test -- --testId="${{ github.event.client_payload.test_id }}"
-          
-# name: Main Workflow
-
-# on:
-#   push:
-#     branches:
-#       - main
-#   repository_dispatch: # Add this line to listen for repository dispatch events
-#     types: [trigger-event] # You can specify a custom type
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v2
-
-#       - name: Run a script
-#         run: echo "Hello, world!"
+      - name: Run a script
+        run: echo "Hello, world!"
      
