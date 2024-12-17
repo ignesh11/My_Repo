@@ -1,0 +1,29 @@
+name: Run Java Class with Parameter
+ 
+on:
+  workflow_dispatch:
+    inputs:
+      param:
+        description: 'Dynamic parameter'
+        required: true
+        default: 'default_value'
+ 
+jobs:
+  run-java:
+    runs-on: ubuntu-latest
+ 
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+ 
+    - name: Set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+ 
+    - name: Compile Java code
+      run: javac -d out src/**/*.java
+ 
+    - name: Run Java class with parameter
+      run: echo ${{ github.event.inputs.param }}
