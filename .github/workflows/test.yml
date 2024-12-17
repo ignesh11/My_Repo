@@ -2,7 +2,7 @@ name: Run Java Class with Parameter
  
 on:
   repository_dispatch: # Add this line to listen for repository dispatch events
-    types: [trigger-event]
+    types: [test]
   workflow_dispatch:
     inputs:
       param:
