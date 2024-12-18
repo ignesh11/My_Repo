@@ -8,6 +8,12 @@ on:
       - main
   repository_dispatch: # Add this line to listen for repository dispatch events
     types: [trigger-event] # You can specify a custom type
+  workflow_dispatch:
+    inputs:
+      param:
+        description: 'Dynamic parameter'
+        required: true
+        default: 'default_value'
 
 jobs:
   build:
