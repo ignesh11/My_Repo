@@ -1,19 +1,21 @@
-
-          
 name: Main Workflow
 
 on:
   push:
     branches:
       - main
-  repository_dispatch: # Add this line to listen for repository dispatch events
-    types: [trigger-event] # You can specify a custom type
+  repository_dispatch:
+    types: [trigger-event]
   workflow_dispatch:
     inputs:
-      param:
-        description: 'Dynamic parameter'
+      tag:
+        description: 'Cucumber Tag'
         required: true
-        default: 'default_value'
+        default: '@defaultTag'
+      unique_id:
+        description: 'Unique ID'
+        required: true
+        default: '12345'
 
 jobs:
   build:
@@ -23,5 +25,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Run a script
-        run: echo "${{ github.event.inputs.param }}"
+      - name: Run Cucumber tests with dynamic parameters
+        run: |
+          echo "Running Cucumber tests with tag: ${{ github.event.inputs.tag }} and unique ID: ${{ github.event.inputs.unique_id }}"
+          mvn test -Dcucumber.filter.tags="${{ github.event.inputs.tag }}" -Dunique.id="${{ github.event.inputs.unique_id }}"
